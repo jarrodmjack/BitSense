@@ -7,6 +7,7 @@ const createToken = (_id) => {
 }
 
 const loginUser = async (req, res) => {
+
 	const { email, password } = req.body
 
 	try {

@@ -1,17 +1,28 @@
-import CurrencyLivePrice from '@/components/CurrencyLivePrice'
-import React from 'react'
+import React, { useEffect } from "react"
 
-const home = () => {
-  return (
-    <div>
-        home page
-        <CurrencyLivePrice currencyId='btc' />
-        <CurrencyLivePrice currencyId='eth' />
-        <CurrencyLivePrice currencyId='ltc' />
-        {/* <CurrencyLivePrice currencyId='' /> */}
-        {/* <CurrencyLivePrice currencyId='btc' /> */}
-    </div>
-  )
+const Home = () => {
+	useEffect(() => {
+		const handleFetchTestData = async () => {
+			try {
+				const response = await fetch("http://localhost:4001/api/home", {
+					method: "GET",
+				})
+				const data = await response.json()
+				console.log("response: ", data)
+			} catch (error) {
+				console.error("Error fetching data:", error)
+			}
+		}
+
+		handleFetchTestData()
+	}, [])
+
+	return (
+		<div className="flex flex-col">
+			<span>top</span>
+			<span>bottom</span>
+		</div>
+	)
 }
 
-export default home
+export default Home
