@@ -14,7 +14,7 @@ const login = () => {
 	}
 
 	return (
-		<section className="bg-gray-900 overflow-hidden">
+		<section className="bg-gray-900 overflow-hidden relative">
 			<CustomVideo
 				videoSrc="/images/techmovingbg.mp4"
 				classNames="absolute z-0 top-0 left-0 min-w-full min-h-full object-cover"
