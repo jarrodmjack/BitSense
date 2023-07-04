@@ -2,6 +2,8 @@ import React, { useState } from "react"
 import { useLogin } from "../hooks/useLogin"
 import Link from "next/link"
 import CustomVideo from "@/components/video/CustomVideo"
+import { useAuthContext } from "@/hooks/useAuthContext"
+import { useRouter } from "next/router"
 ("use-client")
 
 const login = () => {
@@ -9,9 +11,15 @@ const login = () => {
 	const [password, setPassword] = useState("")
 
 	const { login, error } = useLogin()
+	const { user } = useAuthContext()
+	const router = useRouter()
 
 	const handleLogin = async () => {
 		await login(email, password)
+	}
+
+	if (user) {
+		router.push('/')
 	}
 
 	return (

@@ -1,19 +1,14 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
-// module.exports = {
-// 	ssr: false,
-// }
+// import httpProxy from "http-proxy"
 
-module.exports = () => {
-	const rewrites = () => {
+
+module.exports = {
+	rewrites() {
 		return [
 			{
-				source: "/api",
-				destination: "http://localhost:4001",
+				source: "/api/",
+				destination: "http://localhost:4001/api/",
 			},
 		]
-	}
-	return {
-		rewrites,
-	}
+	},
 }

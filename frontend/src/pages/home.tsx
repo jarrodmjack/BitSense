@@ -6,6 +6,16 @@ const Home = () => {
 
 	useEffect(() => {
 		console.log("user in Home component:", user)
+
+		const fetchData = async () => {
+			const res = await fetch(
+				`${process.env.NEXT_PUBLIC_API_URL}/api/home`
+			)
+			const data = await res.json()
+			console.log(data)
+		}
+
+		fetchData()
 	}, [user])
 
 	if (!user) {

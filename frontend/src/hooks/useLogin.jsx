@@ -12,11 +12,14 @@ export const useLogin = () => {
 		setIsLoading(true)
 		setError(null)
 
-		const response = await fetch("http://localhost:4001/api/user/login", {
-			method: "POST",
-			headers: { "Content-type": "application/json" },
-			body: JSON.stringify({ email, password }),
-		})
+		const response = await fetch(
+			`${process.env.NEXT_PUBLIC_API_URL}/api/user/login`,
+			{
+				method: "POST",
+				headers: { "Content-type": "application/json" },
+				body: JSON.stringify({ email, password }),
+			}
+		)
 
 		const json = await response.json()
 
@@ -30,7 +33,7 @@ export const useLogin = () => {
 			dispatch({ type: "LOGIN", payload: json }) // this goes to the context to set global state data
 
 			setIsLoading(false)
-			router.push('/')
+			router.push("/")
 		}
 	}
 

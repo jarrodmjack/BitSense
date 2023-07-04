@@ -10,11 +10,14 @@ export const useSignup = () => {
 		setIsLoading(true)
 		setError(null)
 
-		const response = await fetch("http://localhost:4001/api/user/signup", {
-			method: "POST",
-			headers: { "Content-type": "application/json" },
-			body: JSON.stringify({ email, password }),
-		})
+		const response = await fetch(
+			`${process.env.NEXT_PUBLIC_API_URL}/api/user/signup`,
+			{
+				method: "POST",
+				headers: { "Content-type": "application/json" },
+				body: JSON.stringify({ email, password }),
+			}
+		)
 		const json = await response.json() //contains jwt and email
 
 		if (!response.ok) {
