@@ -8,7 +8,6 @@ const testing = () => {
         <video autoPlay loop muted playsInline>
             <source src="/images/techmovingbg.mp4"></source>
         </video>
-        {/* <img src="/images/condoimage26.png" alt="" /> */}
     </div>
   )
 }

@@ -1,19 +1,23 @@
-import React, { useEffect } from "react";
-import { useAuthContext } from "../hooks/useAuthContext";
+import React, { useEffect } from "react"
+import { useAuthContext } from "../hooks/useAuthContext"
 
 const Home = () => {
-  const { user } = useAuthContext();
+	const { user } = useAuthContext()
 
-  useEffect(() => {
-    console.log('user in Home component:', user);
-  }, [user]);
+	useEffect(() => {
+		console.log("user in Home component:", user)
+	}, [user])
 
-  return (
-    <div className="flex flex-col">
-      <span>top</span>
-      <span>bottom</span>
-    </div>
-  );
-};
+	if (!user) {
+		return <>No User current logged in</>
+	}
 
-export default Home;
+	return (
+		<div className="flex flex-col">
+			<span>top</span>
+			<span>bottom</span>
+		</div>
+	)
+}
+
+export default Home
