@@ -1,35 +1,37 @@
-import { createContext, useReducer, useEffect } from 'react';
+import { useRouter } from 'next/router'
+import { createContext, useReducer, useEffect } from 'react'
 
-export const AuthContext = createContext();
+export const AuthContext = createContext()
 
 export const authReducer = (state, action) => {
-  switch (action.type) {
-    case 'LOGIN':
-      return { user: action.payload };
-    case 'LOGOUT':
-      return { user: null };
-    default:
-      return state;
-  }
-};
+    switch (action.type) {
+        case 'LOGIN':
+            return { user: action.payload }
+        case 'LOGOUT':
+            return { user: null }
+        default:
+            return state
+    }
+}
 
 export const AuthContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, null);
+    const [state, dispatch] = useReducer(authReducer, JSON.parse(localStorage.getItem('user')))
+    const router = useRouter()
+    // check for token in local storage to see if there is already a user logged in
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem('user'));
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        console.log('user in auth context file: ', user)
+        if(user) {
+            dispatch({ type: 'LOGIN', payload: user })
+        }else{
+            router.push('/login')
+        }
+    }, [])
 
-    if (user) {
-      dispatch({ type: 'LOGIN', payload: user });
-    } else {
-      // <Navigate to='/login' />
-      console.log('should navigate to login');
-    }
-  }, []);
-
-  return (
-    <AuthContext.Provider value={{ ...state, dispatch }}>
-      {children}
-    </AuthContext.Provider>
-  );
-};
+    return (
+        <AuthContext.Provider value={{...state, dispatch}}>
+            {children}
+        </AuthContext.Provider>
+    )
+}

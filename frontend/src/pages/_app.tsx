@@ -1,12 +1,33 @@
-import { AuthContextProvider } from "../context/AuthContext"
-import { type AppType } from "next/app"
-import { useRouter } from "next/router"
-import Head from "next/head"
-import 'tailwindcss/tailwind.css';
+// import { AuthContextProvider } from "../context/AuthContext"
+// import { type AppType } from "next/app"
+// import Head from "next/head"
+// import "tailwindcss/tailwind.css"
 
-const MyApp: AppType = ({ Component, pageProps }) => {
-	const router = useRouter()
-	const isLandingPage = router.pathname === "/"
+// const MyApp: AppType = ({ Component, pageProps }) => {
+// 	return (
+// <>
+// 	<Head>
+// 		<title>BitSense</title>
+// 		<meta name="description" content="🐢" />
+// 		<link rel="icon" href="/favicon.ico" />
+// 	</Head>
+// 	<AuthContextProvider>
+// 		<Component {...pageProps} />
+// 	</AuthContextProvider>
+// </>
+// 	)
+// }
+
+// export default MyApp
+import { type AppType } from "next/app"
+import Head from "next/head"
+import "tailwindcss/tailwind.css"
+import { AuthContextProvider } from "../context/AuthContext"
+import type { AppProps } from "next/app"
+import dynamic from "next/dynamic"
+import React from "react"
+
+const App: AppType = ({ Component, pageProps }: AppProps) => {
 	return (
 		<>
 			<Head>
@@ -14,7 +35,6 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 				<meta name="description" content="🐢" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			{/* <Toaster position="top-right" /> TODO IN FUTURE */}
 			<AuthContextProvider>
 				<Component {...pageProps} />
 			</AuthContextProvider>
@@ -22,4 +42,6 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 	)
 }
 
-export default MyApp
+export default dynamic(() => Promise.resolve(App), {
+	ssr: false,
+})

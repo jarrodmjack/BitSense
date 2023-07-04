@@ -2,11 +2,12 @@ import React, { useState } from "react"
 import { useLogin } from "../hooks/useLogin"
 import Link from "next/link"
 import CustomVideo from "@/components/video/CustomVideo"
-;("use-client")
+("use-client")
 
 const login = () => {
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
+
 	const { login, error } = useLogin()
 
 	const handleLogin = async () => {
