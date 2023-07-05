@@ -14,7 +14,10 @@ const CurrencyDisplayTableRow: React.FC<CurrencyDisplayTableRowOwnProps> = ({
 		Number(currency.change) > 0 ? true : false
 
 	return (
-		<tr className="border-b bg-gray-900 border-gray-700">
+		<tr
+			key={currency.uuid}
+			className="border-b  border-gray-700 hover:bg-gray-600 cursor-pointer hover:bg-opacity-30"
+		>
 			<td className="px-6 py-4">{currency.rank}</td>
 			<td className="pl-6 py-4 flex gap-2">
 				<Image
@@ -23,9 +26,12 @@ const CurrencyDisplayTableRow: React.FC<CurrencyDisplayTableRowOwnProps> = ({
 					alt={`${currency.name} logo`}
 					src={currency.iconUrl}
 				/>
-				<span>{currency.name}</span> - <span className="font-bold">{currency.symbol}</span>
+				<span>{currency.name}</span> -{" "}
+				<span className="font-bold">{currency.symbol}</span>
 			</td>
-			<td className="px-6 py-4">{formatCurrencyPrice(currency.price)}</td>
+			<td className="px-6 py-4">
+				${formatCurrencyPrice(currency.price)}
+			</td>
 			<td
 				className={`px-6 py-4 ${
 					isCurrencyPriceChangePositive

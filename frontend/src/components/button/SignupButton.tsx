@@ -5,7 +5,7 @@ const SignupButton = () => {
 	const router = useRouter()
 
 	const handleRedirectToSignup = () => {
-		router.push("/login")
+		router.push("/signup")
 	}
 
 	return (

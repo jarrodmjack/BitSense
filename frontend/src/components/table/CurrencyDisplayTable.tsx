@@ -3,6 +3,9 @@ import { Currency } from "@/types/CurrencyType"
 import { fetchCurrencyData } from "@/utils/fetchCurrencyData"
 import React, { useState, useEffect } from "react"
 import CurrencyDisplayTableRow from "./CurrencyDisplayTableRow"
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton"
+import "react-loading-skeleton/dist/skeleton.css"
+import TableSkeletonLoader from "../loader/TableSkeletonLoader"
 
 type CurrencyDisplayTableOwnProps = {
 	// currencies: any[]
@@ -24,12 +27,14 @@ const CurrencyDisplayTable: React.FC<CurrencyDisplayTableOwnProps> = (
 	}, [])
 
 	if (!currencies || currencies.length === 0) {
-		return <div>Loading....</div>
+		return (
+			<TableSkeletonLoader />
+		)
 	}
 	return (
 		<div className="overflow-x-auto shadow-md sm:rounded-lg md:px-60">
-			<table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 rounded-lg">
-				<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+			<table className="w-full text-sm text-left text-slate-100 rounded-lg">
+				<thead className="text-xs text-slate-100 uppercase border-y border-zinc-700">
 					<tr>
 						<th scope="col" className="px-6 py-3">
 							#
@@ -38,7 +43,7 @@ const CurrencyDisplayTable: React.FC<CurrencyDisplayTableOwnProps> = (
 							Name
 						</th>
 						<th scope="col" className="px-6 py-3">
-							Price
+							Price (USD)
 						</th>
 						<th scope="col" className="px-6 py-3">
 							Change (1hr)
@@ -47,7 +52,7 @@ const CurrencyDisplayTable: React.FC<CurrencyDisplayTableOwnProps> = (
 							Market Cap
 						</th>
 						<th scope="col" className="px-6 py-3">
-							Volume
+							Volume (24hr)
 						</th>
 					</tr>
 				</thead>
