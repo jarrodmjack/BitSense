@@ -14,8 +14,8 @@ const Layout: React.FC<LayoutOwnProps> = ({ children }) => {
 	}
 
 	return (
-		<div>
-			<nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+		<main className="flex flex-col">
+			<nav className="w-full bg-gray-950">
 				<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 					{/* <img
 							src="https://flowbite.com/docs/images/logo.svg"
@@ -69,8 +69,8 @@ const Layout: React.FC<LayoutOwnProps> = ({ children }) => {
 					</div>
 				</div>
 			</nav>
-			{children}
-		</div>
+			<>{children}</>
+		</main>
 	)
 }
 

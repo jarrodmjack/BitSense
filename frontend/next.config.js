@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
 // import httpProxy from "http-proxy"
 
-
 module.exports = {
+	images: {
+		domains: ["cdn.coinranking.com"],
+	},
 	rewrites() {
 		return [
 			{
