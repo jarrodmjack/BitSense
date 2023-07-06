@@ -1,5 +1,6 @@
 import GlobalCurrencyData from "@/components/globalCurrencyData/GlobalCurrencyData"
 import Layout from "@/components/layout/Layout"
+import MemoizedCurrencyDisplayTable from "@/components/table/CurrencyDisplayTable"
 import CurrencyDisplayTable from "@/components/table/CurrencyDisplayTable"
 import FearAndGreedCard from "@/components/tripleSection/FearAndGreedCard"
 import TopPerformersCard from "@/components/tripleSection/TopPerformersCard"
@@ -34,7 +35,7 @@ const index = () => {
 				</section>
 				<section className="px-60">
 					<GlobalCurrencyData data={globalCurrencyData} />
-					<CurrencyDisplayTable />
+					<MemoizedCurrencyDisplayTable />
 				</section>
 			</div>
 		</Layout>

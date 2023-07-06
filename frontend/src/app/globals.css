@@ -38,5 +38,5 @@ body {
 
 .linear-main-bg {
   background: rgb(66,66,69);
-  background: linear-gradient(180deg, rgb(32, 33, 41) 0%, rgba(4,4,4,1) 4%);
+  background: linear-gradient(180deg, rgb(56, 57, 67) 0%, rgba(4,4,4,1) 15%);
 }

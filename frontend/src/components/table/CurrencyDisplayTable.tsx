@@ -2,9 +2,9 @@
 import { Currency } from "@/types/CurrencyType"
 import { fetchCurrencyData } from "@/utils/fetchCurrencyData"
 import React, { useState, useEffect } from "react"
-import CurrencyDisplayTableRow from "./CurrencyDisplayTableRow"
 import "react-loading-skeleton/dist/skeleton.css"
 import TableSkeletonLoader from "../loader/TableSkeletonLoader"
+import MemoizedCurrencyDisplayTableRow from "./CurrencyDisplayTableRow"
 
 const CurrencyDisplayTable = ({}) => {
 	const [currencies, setCurrencies] = useState([])
@@ -47,7 +47,10 @@ const CurrencyDisplayTable = ({}) => {
 				</thead>
 				<tbody>
 					{currencies.map((currency: Currency) => (
-						<CurrencyDisplayTableRow currency={currency} />
+						<MemoizedCurrencyDisplayTableRow
+							key={currency.uuid}
+							currency={currency}
+						/>
 					))}
 				</tbody>
 			</table>
@@ -55,4 +58,7 @@ const CurrencyDisplayTable = ({}) => {
 	)
 }
 
-export default CurrencyDisplayTable
+const MemoizedCurrencyDisplayTable = React.memo(CurrencyDisplayTable)
+
+export default MemoizedCurrencyDisplayTable
+// export default CurrencyDisplayTable

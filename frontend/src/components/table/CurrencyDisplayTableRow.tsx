@@ -51,4 +51,6 @@ const CurrencyDisplayTableRow: React.FC<CurrencyDisplayTableRowOwnProps> = ({
 	)
 }
 
-export default CurrencyDisplayTableRow
+const MemoizedCurrencyDisplayTableRow = React.memo(CurrencyDisplayTableRow)
+export default MemoizedCurrencyDisplayTableRow
+// export default CurrencyDisplayTableRow
