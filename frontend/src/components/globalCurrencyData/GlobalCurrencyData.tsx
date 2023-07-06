@@ -6,11 +6,10 @@ type GlobalCurrencyDataOwnProps = {
 }
 
 const GlobalCurrencyData: React.FC<GlobalCurrencyDataOwnProps> = ({ data }) => {
+
 	if (!data) {
 		return <></>
 	}
-
-    formatCurrencyShortForm(1244)
 
 	return (
 		<section className="text-slate-100 mx-auto flex gap-8 p-4 rounded-lg mb-4 text-sm">
