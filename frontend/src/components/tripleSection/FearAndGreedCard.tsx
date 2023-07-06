@@ -10,13 +10,7 @@ const FearAndGreedCard = () => {
 			setCurrentFGIndex(Number(data.data[0].value) || 0)
 		}
 		fetchFGIndex()
-	})
-
-	const FGIndexBarColors = {
-		"25": "red",
-		"50": "red",
-		"75": "red",
-	}
+	}, [])
 
 	if (!currentFGIndex || currentFGIndex === 0) {
 		return <div>No data to show</div>

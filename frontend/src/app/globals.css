@@ -12,3 +12,31 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #545454 #000000;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #000000;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #393939;
+    border-radius: 10px;
+    border: 0px none #ffffff;
+  }
+
+
+.linear-main-bg {
+  background: rgb(66,66,69);
+  background: linear-gradient(180deg, rgba(66,66,69,1) 0%, rgba(4,4,4,1) 4%);
+}

@@ -1,1 +1,5 @@
-got data sending back from home routes. Start figuring out login/logout
+Finish triple section -> Trending/Crypto news/Fear and Greed
+
+add pagination to table
+
+Add a profile / portfolio route

@@ -3,18 +3,16 @@ import React, { PropsWithChildren } from "react"
 import LoginButton from "../button/LoginButton"
 import SignupButton from "../button/SignupButton"
 import LogoutButton from "../button/LogoutButton"
+import "../../app/globals.css"
 
 type LayoutOwnProps = {} & PropsWithChildren
 
 const Layout: React.FC<LayoutOwnProps> = ({ children }) => {
 	const { user } = useAuthContext()
 
-	// <div className="absolute top-0 left-0 right-0 h-1/4 bg-gradient-to-b from-gray-200 to-black"></div>
-    //   <div className="absolute top-1/4 left-0 right-0 bottom-0 bg-gradient-to-b from-black to-gray-900"></div>
-
 	return (
-		<main className="flex flex-col min-h-screen justify-between bg-zinc-900">
-			<nav className="w-full bg-gray-950 mb-10">
+		<main className="flex flex-col min-h-screen justify-between linear-main-bg">
+			<nav className="w-full bg-gray-950 mb-10 py-10">
 				<div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 					<span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
 						BitSense
@@ -51,14 +49,15 @@ const Layout: React.FC<LayoutOwnProps> = ({ children }) => {
 									Portfolio
 								</a>
 							</li>
-							<li>
+							{/* WILL ADD THIS BACK IN AT A LATER DATE FOR USER SETTINGS */}
+							{/* <li>
 								<a
 									href="#"
 									className="text-white block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-violet-700 md:p-0"
 								>
 									Settings
 								</a>
-							</li>
+							</li> */}
 						</ul>
 					</div>
 				</div>
@@ -74,7 +73,7 @@ const Layout: React.FC<LayoutOwnProps> = ({ children }) => {
 							<li>
 								<a
 									href="#"
-									className="mr-4 hover:underline md:mr-6 "
+									className="mr-4 hover:underline md:mr-6 hover:text-violet-700"
 								>
 									About
 								</a>
@@ -82,7 +81,7 @@ const Layout: React.FC<LayoutOwnProps> = ({ children }) => {
 							<li>
 								<a
 									href="#"
-									className="mr-4 hover:underline md:mr-6"
+									className="mr-4 hover:underline md:mr-6 hover:text-violet-700"
 								>
 									Privacy Policy
 								</a>
@@ -90,13 +89,16 @@ const Layout: React.FC<LayoutOwnProps> = ({ children }) => {
 							<li>
 								<a
 									href="#"
-									className="mr-4 hover:underline md:mr-6 "
+									className="mr-4 hover:underline md:mr-6 hover:text-violet-700"
 								>
 									Licensing
 								</a>
 							</li>
 							<li>
-								<a href="#" className="hover:underline">
+								<a
+									href="#"
+									className="hover:underline hover:text-violet-700"
+								>
 									Contact
 								</a>
 							</li>
