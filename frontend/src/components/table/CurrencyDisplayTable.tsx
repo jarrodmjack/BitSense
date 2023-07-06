@@ -5,9 +5,17 @@ import React, { useState, useEffect } from "react"
 import "react-loading-skeleton/dist/skeleton.css"
 import TableSkeletonLoader from "../loader/TableSkeletonLoader"
 import MemoizedCurrencyDisplayTableRow from "./CurrencyDisplayTableRow"
+import CurrencyTablePagination from "../pagination/Pagination"
 
 const CurrencyDisplayTable = ({}) => {
 	const [currencies, setCurrencies] = useState([])
+	const [loading, setLoading] = useState(false)
+	const [currentPage, setCurrentPage] = useState(1)
+	const [currenciesPerPage, setCurrenciesPerPage] = useState(16)
+	const [sortedAscending, setSortedAscending] = useState({
+		col: "",
+		asc: false,
+	})
 
 	useEffect(() => {
 		const populateCurrencies = async () => {
@@ -20,6 +28,19 @@ const CurrencyDisplayTable = ({}) => {
 	if (!currencies || currencies.length === 0) {
 		return <TableSkeletonLoader />
 	}
+
+	// GET CURRENT CURRENCIES FOR PAGINATION
+	const indexOfLastCurrency = currentPage * currenciesPerPage
+	const indexOfFirstCurrency = indexOfLastCurrency - currenciesPerPage
+	const currentCurrencies = currencies.slice(
+		indexOfFirstCurrency,
+		indexOfLastCurrency
+	)
+	// CHANGE PAGE
+	const paginate = (pageNumber: number) => {
+		setCurrentPage(pageNumber)
+	}
+
 	return (
 		<div className="overflow-x-auto shadow-md sm:rounded-lg">
 			<table className="w-full text-sm text-left text-slate-100 rounded-lg">
@@ -46,7 +67,7 @@ const CurrencyDisplayTable = ({}) => {
 					</tr>
 				</thead>
 				<tbody>
-					{currencies.map((currency: Currency) => (
+					{currentCurrencies.map((currency: Currency) => (
 						<MemoizedCurrencyDisplayTableRow
 							key={currency.uuid}
 							currency={currency}
@@ -54,6 +75,12 @@ const CurrencyDisplayTable = ({}) => {
 					))}
 				</tbody>
 			</table>
+			<CurrencyTablePagination
+				currenciesPerPage={currenciesPerPage}
+				totalCurrencies={currencies.length}
+				paginate={paginate}
+				currentPage={currentPage}
+			/>
 		</div>
 	)
 }
