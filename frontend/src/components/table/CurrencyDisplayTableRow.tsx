@@ -2,6 +2,7 @@ import { Currency } from "@/types/CurrencyType"
 import React from "react"
 import { formatCurrencyPrice } from "@/utils/formatCurrencyPrice"
 import Image from "next/image"
+import Link from "next/link"
 
 type CurrencyDisplayTableRowOwnProps = {
 	currency: Currency
@@ -26,7 +27,7 @@ const CurrencyDisplayTableRow: React.FC<CurrencyDisplayTableRowOwnProps> = ({
 					alt={`${currency.name} logo`}
 					src={currency.iconUrl}
 				/>
-				<span>{currency.name}</span> -{" "}
+				<Link href={`currency/${currency.uuid}`}><span>{currency.name}</span></Link> -{" "}
 				<span className="font-bold">{currency.symbol}</span>
 			</td>
 			<td className="px-6 py-4">
