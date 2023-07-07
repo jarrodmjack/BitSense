@@ -12,7 +12,7 @@ const TopPerformersCard: React.FC<TopPerformersCardOwnProps> = ({
 			<h3 className="font-bold text-xl">Top Performers 💹</h3>
 			<div className="flex flex-col gap-4 text-sm">
 				{topPerformers.map((currency, i) => (
-					<div className="flex gap-4">
+					<div key={currency.uuid} className="flex gap-4">
 						<div className="flex gap-2">
 							<span className="font-thin text-slate-400">{i+1}</span>
 							<span>{currency.name}</span>

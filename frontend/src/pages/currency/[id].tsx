@@ -3,38 +3,57 @@ import { useRouter } from "next/router"
 import React, { useEffect, useState } from "react"
 import "../../app/globals.css"
 import { formatCurrencyPrice } from "@/utils/formatCurrencyPrice"
+import LineChart from "@/components/chart/LineChart"
 
 const CurrencyDetailsPage = () => {
 	const router = useRouter()
 	const [currency, setCurrency] = useState<any>()
 
 	useEffect(() => {
-		const fetchSingleCurrencyData = async () => {
-			const url = `https://coinranking1.p.rapidapi.com/coin/${router.query.id}?referenceCurrencyUuid=aKzUVe4Hh_CON&timePeriod=24h`
-			const options = {
-				method: "GET",
-				headers: {
-					"X-RapidAPI-Key":
-						process.env.NEXT_PUBLIC_COINRANKING_API_KEY!,
-					"X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
-				},
-			}
-
-			try {
-				const response = await fetch(url, options)
-				const result = await response.json()
-				setCurrency(result.data.coin)
-			} catch (error) {
-				console.error(error)
+		const fetchCurrencyData = async () => {
+			if (router.query.id) {
+				const url = `https://coinranking1.p.rapidapi.com/coin/${router.query.id}?referenceCurrencyUuid=aKzUVe4Hh_CON&timePeriod=24h`
+				const options = {
+					method: "GET",
+					headers: {
+						"X-RapidAPI-Key":
+							process.env.NEXT_PUBLIC_COINRANKING_API_KEY!,
+						"X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
+					},
+				}
+				try {
+					const response = await fetch(url, options)
+					const result = await response.json()
+					console.log("result: ", result.data.coin)
+					setCurrency(result.data.coin)
+				} catch (err) {
+					console.error(err)
+				}
 			}
 		}
-		fetchSingleCurrencyData()
-	}, [])
+		fetchCurrencyData()
+	}, [router.query.id])
 
 	if (!currency) {
 		return <div>Loading...</div>
 	}
-    console.log('currency: ', currency)
+
+	const chartData = {
+		labels:
+			currency &&
+			currency.sparkline.map((_: null, i: number) => `${i + 1}hr`),
+		datasets: [
+			{
+				label: "Users Gained ",
+				data:
+					currency &&
+					currency.sparkline.map((data: string) => Number(data)),
+				backgroundColor: ["#61119e"],
+				borderColor: "white",
+				borderWidth: 0.5,
+			},
+		],
+	}
 	return (
 		<ExtendedLayout>
 			<div className="text-slate-100 flex flex-col justify-between h-full">
@@ -55,40 +74,40 @@ const CurrencyDetailsPage = () => {
 				<div className="border-b border-zinc-600 px-60">
 					<p className="py-10 w-1/2">{currency.description || ""}</p>
 				</div>
-				{/* <div className="border w-1/4">
-					<h4 className="text-xl font-semibold">
-						{currency.name}{" "}
-						<span className="font-thin text-slate-400">
-							{currency.symbol}
-						</span>
-					</h4>
-					<h3 className="text-2xl font-semibold">
-						Price ${formatCurrencyPrice(currency.price)}
-					</h3>
-					<div className="border">
-						<div className="flex items-center justify-between">
-							<p className="text-slate-200">Volume(24Hr):</p>
-							<p>${formatCurrencyPrice(currency["24hVolume"])}</p>
-						</div>
-						<div className="flex items-center justify-between">
-							<p className="text-slate-200">Total Circulating Supply: </p>
-							<p>
-								{formatCurrencyPrice(
-									currency.supply.circulating
-								)}
-							</p>
-						</div>
-						<div className="flex items-center justify-between">
-							<p className="text-slate-200">Market Cap:</p>
-							<p>${formatCurrencyPrice(currency.marketCap)}</p>
-						</div>
-					</div>
+				<div className="px-60 mx-auto">
+					<LineChart chartData={chartData} />
 				</div>
-				<div className="border w-1/2">CHART</div>
-				<div className="border w-1/4">related articles?</div> */}
 			</div>
 		</ExtendedLayout>
 	)
 }
+
+// export const getStaticPaths: GetStaticPaths = async () => {
+// 	return {
+// 		paths: [],
+// 		fallback: true,
+// 	}
+// }
+
+// export const getStaticProps: GetStaticProps = async ({ params }) => {
+// 	const { id } = params!
+
+// 	const url = `https://coinranking1.p.rapidapi.com/coin/${id}?referenceCurrencyUuid=aKzUVe4Hh_CON&timePeriod=24h`
+// 	const options = {
+// 		method: "GET",
+// 		headers: {
+// 			"X-RapidAPI-Key": process.env.NEXT_PUBLIC_COINRANKING_API_KEY!,
+// 			"X-RapidAPI-Host": "coinranking1.p.rapidapi.com",
+// 		},
+// 	}
+
+// 	const response = await fetch(url, options)
+// 	const result = await response.json()
+// 	return {
+// 		props: {
+// 			currency: result.data.coin,
+// 		},
+// 	}
+// }
 
 export default CurrencyDetailsPage
