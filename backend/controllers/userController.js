@@ -26,8 +26,6 @@ const loginUser = async (req, res) => {
 const signupUser = async (req, res) => {
     
 	const { email, password } = req.body
-	console.log({ email })
-	console.log({ password })
 
 	try {
 	    const user = await User.signup(email, password) // static method from user model

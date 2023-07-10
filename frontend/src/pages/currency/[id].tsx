@@ -24,7 +24,6 @@ const CurrencyDetailsPage = () => {
 				try {
 					const response = await fetch(url, options)
 					const result = await response.json()
-					console.log("result: ", result.data.coin)
 					setCurrency(result.data.coin)
 				} catch (err) {
 					console.error(err)

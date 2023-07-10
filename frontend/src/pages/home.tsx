@@ -5,7 +5,6 @@ const Home = () => {
 	const { user } = useAuthContext()
 
 	useEffect(() => {
-		console.log("user in Home component:", user)
 
 		const fetchData = async () => {
 			const res = await fetch(
