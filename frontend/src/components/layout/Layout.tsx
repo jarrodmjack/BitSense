@@ -6,6 +6,7 @@ import LogoutButton from "../button/LogoutButton"
 import "../../app/globals.css"
 import Link from "next/link"
 import ScrollingCryptoPriceWidget from "../scrollingWidget/ScrollingCryptoPriceWidget"
+import { FaBars } from 'react-icons/fa';
 
 type LayoutOwnProps = {} & PropsWithChildren
 
@@ -22,40 +23,44 @@ const Layout: React.FC<LayoutOwnProps> = ({ children }) => {
 								BitSense
 							</span>
 						</Link>
-						<div className="flex md:order-2">
+						<div className="flex"></div>
+						<div className="text-slate-100 sm:hidden">
+							<FaBars className="scale-125" />
+						</div>
+						<ul className="font-medium items-center gap-4 hidden sm:flex">
+							<li>
+								<a
+									href="/"
+									className="py-2 pl-3 pr-4 text-slate-100 rounded"
+									aria-current="page"
+								>
+									Home
+								</a>
+							</li>
+							<li>
+								<a
+									href="#"
+									className="text-slate-100 py-2 pl-3 pr-4 rounded hover:bg-gray-100 hover:text-violet-700"
+								>
+									Portfolio
+								</a>
+							</li>
 							{!user ? (
 								<>
-									<LoginButton />
-									<SignupButton />
+									<li>
+										<LoginButton />
+									</li>
+									<li>
+										<SignupButton />
+									</li>
 								</>
 							) : (
-								<LogoutButton />
+								<li>
+									<LogoutButton />
+								</li>
 							)}
-						</div>
-						<div
-							className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-							id="navbar-sticky"
-						>
-							<ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 bg-gray-950">
-								<li>
-									<a
-										href="/"
-										className="block py-2 pl-3 pr-4 text-white bg-violet-700 rounded md:bg-transparent md:text-violet-700 md:p-0 "
-										aria-current="page"
-									>
-										Home
-									</a>
-								</li>
-								<li>
-									<a
-										href="#"
-										className="text-white block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-violet-700 md:p-0"
-									>
-										Portfolio
-									</a>
-								</li>
-								{/* WILL ADD THIS BACK IN AT A LATER DATE FOR USER SETTINGS */}
-								{/* <li>
+							{/* WILL ADD THIS BACK IN AT A LATER DATE FOR USER SETTINGS */}
+							{/* <li>
 								<a
 									href="#"
 									className="text-white block py-2 pl-3 pr-4 rounded hover:bg-gray-100 md:hover:bg-transparent hover:text-violet-700 md:p-0"
@@ -63,8 +68,7 @@ const Layout: React.FC<LayoutOwnProps> = ({ children }) => {
 									Settings
 								</a>
 							</li> */}
-							</ul>
-						</div>
+						</ul>
 					</div>
 				</nav>
 				<ScrollingCryptoPriceWidget />

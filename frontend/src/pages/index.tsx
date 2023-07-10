@@ -23,16 +23,16 @@ const index = () => {
 			<div className="flex flex-col gap-10">
 				<section className="flex w-3/4 mx-auto justify-evenly">
 					{globalCurrencyData && (
-						<>
+						<div className="flex flex-wrap gap-4">
 							<TrendingCard />
 							<TopPerformersCard
 								topPerformers={globalCurrencyData.bestCoins}
 							/>
 							<FearAndGreedCard />
-						</>
+						</div>
 					)}
 				</section>
-				<section className="px-60">
+				<section className="lg:px-60">
 					<GlobalCurrencyData data={globalCurrencyData} />
 					<MemoizedCurrencyDisplayTable />
 				</section>

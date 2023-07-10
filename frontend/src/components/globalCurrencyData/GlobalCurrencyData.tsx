@@ -12,7 +12,7 @@ const GlobalCurrencyData: React.FC<GlobalCurrencyDataOwnProps> = ({ data }) => {
 	}
 
 	return (
-		<section className="text-slate-100 mx-auto flex gap-8 p-4 rounded-lg mb-4 text-sm">
+		<section className="text-slate-100 flex flex-col lg:flex lg:flex-row gap-8 p-4 rounded-lg mb-4 text-sm">
 			<div className="flex flex-col">
 				<span className=" font-bold">Total Market cap</span>
 				<span>{formatCurrencyShortForm(data.totalMarketCap)}</span>
