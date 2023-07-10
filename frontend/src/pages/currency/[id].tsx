@@ -44,13 +44,14 @@ const CurrencyDetailsPage = () => {
 			currency.sparkline.map((_: null, i: number) => `${i + 1}hr`),
 		datasets: [
 			{
-				label: "Users Gained ",
+				label: "Price",
 				data:
 					currency &&
 					currency.sparkline.map((data: string) => Number(data)),
 				backgroundColor: ["#61119e"],
-				borderColor: "white",
+				borderColor: "#394658",
 				borderWidth: 0.5,
+				borderJoinStyle: "mitre",
 			},
 		],
 	}
@@ -74,7 +75,7 @@ const CurrencyDetailsPage = () => {
 				<div className="border-b border-zinc-600 px-60">
 					<p className="py-10 w-1/2">{currency.description || ""}</p>
 				</div>
-				<div className="px-60 mx-auto">
+				<div className="flex justify-center">
 					<LineChart chartData={chartData} />
 				</div>
 			</div>

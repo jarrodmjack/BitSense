@@ -7,13 +7,12 @@ import Chart from "chart.js/auto"
 Chart.register(CategoryScale)
 
 type LineChartOwnProps = {
-    chartData: any
+	chartData: any
 }
 
 const LineChart: React.FC<LineChartOwnProps> = ({ chartData }) => {
-
 	return (
-		<div className="chart-container">
+		<div className="h-full w-[850px]">
 			<Line
 				data={chartData}
 				options={{
@@ -21,9 +20,22 @@ const LineChart: React.FC<LineChartOwnProps> = ({ chartData }) => {
 						title: {
 							display: true,
 							text: "Price change in the last 24 hours",
+							color: "#C3C3C3", // Specify the title text color here
 						},
 						legend: {
 							display: false,
+						},
+					},
+					scales: {
+						x: {
+							ticks: {
+								color: "#C3C3C3",
+							},
+						},
+						y: {
+							ticks: {
+								color: "#C3C3C3",
+							},
 						},
 					},
 				}}
