@@ -1,7 +1,6 @@
 import GlobalCurrencyData from "@/components/globalCurrencyData/GlobalCurrencyData"
 import Layout from "@/components/layout/Layout"
 import MemoizedCurrencyDisplayTable from "@/components/table/CurrencyDisplayTable"
-import CurrencyDisplayTable from "@/components/table/CurrencyDisplayTable"
 import FearAndGreedCard from "@/components/tripleSection/FearAndGreedCard"
 import TopPerformersCard from "@/components/tripleSection/TopPerformersCard"
 import TrendingCard from "@/components/tripleSection/TrendingCard"
