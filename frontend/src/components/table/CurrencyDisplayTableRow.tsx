@@ -40,7 +40,7 @@ const CurrencyDisplayTableRow: React.FC<CurrencyDisplayTableRowOwnProps> = ({
 						: "text-red-600"
 				}`}
 			>
-				{currency.change}
+				{currency.change}%
 			</td>
 			<td className="px-6 py-4">
 				${formatCurrencyPrice(currency.marketCap)}

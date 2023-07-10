@@ -54,9 +54,10 @@ const CurrencyDetailsPage = () => {
 			},
 		],
 	}
+
 	return (
 		<ExtendedLayout>
-			<div className="text-slate-100 flex flex-col justify-between h-full">
+			<div className="text-slate-100 flex flex-col justify-between h-full gap-10">
 				<div className="w-full border-b border-zinc-600 py-10 px-60">
 					<div className="flex items-center gap-10">
 						<p className="text-2xl">
@@ -66,13 +67,40 @@ const CurrencyDetailsPage = () => {
 							</span>
 						</p>
 						<p className="text-2xl">
-							${formatCurrencyPrice(currency.price)}{" "}
-							<span className="text-sm text-slate-400">USD</span>
+							${formatCurrencyPrice(currency.price)} USD{" "}
+							<span className="text-sm text-slate-400">
+								Current price
+							</span>
+						</p>
+						<p
+							className={`text-2xl ${
+								Number(currency.change) > 0
+									? "text-green-600"
+									: "text-red-600"
+							}`}
+						>
+							{currency.change}%{" "}
+							<span className="text-sm text-slate-400">
+								Price change (24 hr)
+							</span>
+						</p>
+						<p className="text-2xl">
+							${formatCurrencyPrice(currency.allTimeHigh.price)}{" "}
+							USD{" "}
+							<span className="text-sm text-slate-400">
+								ATH (All time high)
+							</span>
+						</p>
+						<p className="text-2xl">
+							${formatCurrencyPrice(currency.marketCap)} USD{" "}
+							<span className="text-sm text-slate-400">
+								Market Cap
+							</span>
 						</p>
 					</div>
 				</div>
 				<div className="border-b border-zinc-600 px-60">
-					<p className="py-10 w-1/2">{currency.description || ""}</p>
+					<p className="pb-10 w-1/2">{currency.description || ""}</p>
 				</div>
 				<div className="flex justify-center">
 					<LineChart chartData={chartData} />
