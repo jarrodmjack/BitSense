@@ -33,7 +33,6 @@ app.use(cors());
 // Routes
 app.use('/api/home', homeRoutes)
 app.use('/api/user', userRoutes)
-// app.use('/api/punch', timePunchRoutes)
 
 
 
